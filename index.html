@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+
+  <script>
+    //Define computerPlay function
+    //Take an array with three options (rock, paper and scissors)
+    //Randomly return either rock, paper or scissors
+    function computerPlay(){
+      let moves = ["rock", "paper", "scissors"];
+      return computerSelection = moves[Math.floor(Math.random() * moves.length)];
+    }
+
+    //Define playRound function
+    //Take two parameters: playerSelection and computerSelection
+    //Return a string that declares the winner of the round like "You Lose! Paper beats Rock"
+    function playRound(){
+      computerPlay();
+      const playerSelection = prompt("Please select rock, paper or scissors").toLowerCase();
+      console.log("Computer choose: " + computerSelection);
+      console.log("You choose: " + playerSelection);
+
+      if (playerSelection === computerSelection){
+        return outcome = "Draw! Try again";
+      } else if (playerSelection == "paper" && computerSelection == "rock"){
+        return outcome = "You win!";
+      } else if (playerSelection == "rock" && computerSelection == "scissors"){
+        return outcome = "You win!";
+      } else if (playerSelection == "scissors" && computerSelection == "paper"){
+        return outcome = "You win!";
+      } else if (computerSelection == "paper" && playerSelection == "rock"){
+        return outcome = "You lose!";
+      } else if (computerSelection == "rock" && playerSelection == "scissors"){
+        return outcome = "You lose!";
+      } else if (computerSelection == "scissors" && playerSelection == "paper"){
+        return outcome = "You lose!";
+      }
+    }
+
+    //Define function for 5 game set
+    function game(){
+      let playerCount = 0;
+      let computerCount = 0;
+
+      for (let i = 0; i<1000; i++){
+        playRound();
+        if (outcome === "Draw! Try again"){
+          console.log("Draw! Try again")
+        } else if (outcome === "You win!"){
+          playerCount++;
+          console.log("You win the round");
+        } else if (outcome === "You lose!"){
+          computerCount++;
+          console.log("You lose the round");
+        }
+        if (playerCount == 3 || computerCount == 3){
+          break;
+        }
+        console.log("Your score:" + playerCount);
+        console.log("Computer score: " + computerCount);
+      }
+      
+      console.log("Your score:" + playerCount);
+      console.log("Computer score: " + computerCount);
+
+      if (playerCount > computerCount){
+        console.log("You win the match");
+      } else if (computerCount > playerCount){
+        console.log("You lose the match");
+      }
+    }
+    game();
+
+  </script>
+</body>
+</html>
