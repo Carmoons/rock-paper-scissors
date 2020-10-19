@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Piedra Papel Tijera</title>
+  <link href='styleUI.css' rel='stylesheet'>
+</head>
+<body>
+  <div>
+    <h1>PIEDRA PAPEL TIJERA</h1>
+    <h2>Tu contra la máquina. Jugamos al mejor de 5 rondas.</h2>
+    <h3>¿Estás preparado?, a jugar!</h3>
+    <button class='button' id='rock'>rock</button>
+    <button class='button' id='paper'>paper</button>
+    <button class='button' id='scissors'>scissors</button>
+  </div>  
+  <div id='score'>
+  </div>
+
+  <script>
+    //Define computerPlay function
+    //Take an array with three options (rock, paper and scissors)
+    //Randomly return either rock, paper or scissors
+    function computerPlay(){
+      let moves = ["rock", "paper", "scissors"];
+      return computerSelection = moves[Math.floor(Math.random() * 3)];
+    }
+
+    //Define playRound function
+    //Take two parameters: playerSelection and computerSelection
+    //Return a string that declares the winner of the round like "You Lose! Paper beats Rock"
+    function playRound(playerSelection) {
+      computerPlay();
+
+      if (playerSelection === computerSelection){
+        alert("Draw! Try again");
+        alertWinner();
+        updateScore();
+      } else if (playerSelection == "paper" & computerSelection == "rock"){
+        alert("You win!");
+        playerCount++;
+        alertWinner();
+        updateScore();
+      } else if (playerSelection == "rock" & computerSelection == "scissors"){
+        alert("You win!");
+        playerCount++;
+        alertWinner();
+        updateScore();
+      } else if (playerSelection == "scissors" & computerSelection == "paper"){
+        alert("You win!");
+        playerCount++;
+        alertWinner();
+        updateScore();
+      } else if (computerSelection == "paper" & playerSelection == "rock"){
+        alert("You lose!");
+        computerCount++;
+        alertWinner();
+        updateScore();
+      } else if (computerSelection == "rock" & playerSelection == "scissors"){
+        alert("You lose!");
+        computerCount++;
+        alertWinner();
+        updateScore();
+      } else if (computerSelection == "scissors" & playerSelection == "paper"){
+        alert("You lose!");
+        computerCount++;
+        alertWinner();
+        updateScore();
+      }
+    }
+
+    //These variable at the global level are used to store the scores
+    let playerCount = 0;
+    let computerCount = 0;
+
+    //This variable targets the div with id='score'
+    let score = document.querySelector('#score');
+
+    //This is the function that we call in playRound(), which updates the text of the div at each round
+    //with the score of player and computer
+    function updateScore () {
+        score.textContent = 'You: ' + playerCount + ' ' + 'Computer: ' + computerCount;
+    }
+
+    //This function is called at each round in the function playRound() and checks if one of the players
+    //has reached 3 points. If so, it alerts the winner and resets the score to zero
+    //by calling the function resetScore()
+    function alertWinner () {
+        if (playerCount === 3) {
+            alert('You are the winner of this match!');
+            resetScore();
+        } else if (computerCount === 3) {
+            alert('The computer wins this match! Try again!');
+            resetScore();
+        }
+    }
+
+    //This function is called in the function alertWinner() and it resets the score
+    function resetScore() {
+        playerCount = 0;
+        computerCount = 0;
+    }    
+
+    //These variables are event listeners. 
+    //When you press the corresponding button in the UI,
+    //the function playRound is called. It is here provided with the arguments of the
+    //pressed button (either rock, paper, or scissors) and computerPlay (which is a function called here)
+    const rock = document.querySelector('#rock');
+    rock.addEventListener('click', () => {
+        playRound('rock'); /*As you see, the value 'rock' is passed as an argument of the function playRound*/
+        });
+    
+    const paper = document.querySelector('#paper');
+    paper.addEventListener('click', () => {
+        playRound('paper'); /*As you see, the value 'paper' is passed as an argument of the function playRound*/
+        });
+
+    const scissors = document.querySelector('#scissors');
+    scissors.addEventListener('click', () => {
+        playRound('scissors'); /*As you see, the value 'scissors' is passed as an argument of the function playRound*/
+        });
+    
+
+  </script>
+</body>
+</html>

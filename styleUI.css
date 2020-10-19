@@ -1,0 +1,35 @@
+body {
+  background-color: tomato ;
+  color: white;
+  font-family:  sans-serif;
+  text-align: center;
+  position: absolute;
+      top: 40%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%)
+}
+
+button {
+  border: 5px solid white;
+  background-color: red;
+  font-size: 30px;
+  border-radius: 20%;
+  padding: 4%;
+  margin-bottom: 3%;
+  color: white;
+  font-family: sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 1;
+  background-color: gray;
+}
+
+#score {
+  font-size: 25px;
+  font-family: sans-serif;
+  font-weight: bold;
+}
